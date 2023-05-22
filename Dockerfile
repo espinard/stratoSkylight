@@ -8,12 +8,14 @@ WORKDIR /app
 
 # copy go.mod and go.sum into our image
 COPY go.mod go.sum ./
-
 # download go dependencies from our go.mod and go.sum files
 RUN go mod download
 
 #Copy source code
 COPY main.go ./
+
+#template 
+COPY index.tmpl ./
 
 RUN go build -o /docker-stratos
 

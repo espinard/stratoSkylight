@@ -27,10 +27,17 @@ var flights  = [] flight{
 func  main()  {
 
 	router := gin.Default()
-    
+    router.LoadHTMLFiles("index.tmpl")
+
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"title": "Stratos Flights Management Platform",
+		})
+	})
+
     router.GET("/flights", getAllFlights)
 
-    router.Run()
+    router.Run() // by default on port 8080 
 	
 }
 
