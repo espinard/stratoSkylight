@@ -3,9 +3,10 @@ package main
 import (
     "net/http"
     "github.com/gin-gonic/gin"
+
 )
 
-//represents data about a flight
+//represents data about a flight operated by Stratos
 type flight struct {
     ID     string  `json:"id"`
 	CallSign  string `json:"callSign"`
@@ -13,7 +14,7 @@ type flight struct {
     Origin string  `json:"origin"`
 }
 
-
+// Test data about flights
 var flights  = [] flight{
     {ID: "STRATOS1", CallSign: "OO-SHK", Destination: "Brussels", Origin: "Namur"},
 	{ID: "STRATOS2", CallSign: "OO-SPK", Destination: "Namur", Origin: "Namur"},
@@ -26,9 +27,10 @@ var flights  = [] flight{
 func  main()  {
 
 	router := gin.Default()
+    
     router.GET("/flights", getAllFlights)
 
-    router.Run("localhost:8080")
+    router.Run()
 	
 }
 
@@ -36,3 +38,4 @@ func  main()  {
 func getAllFlights(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, flights)	
 }
+
